@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Agriculture & Safety System | ESP32</title>
+  <style>
+    :root {
+      --primary: #0f766e;
+      --secondary: #ecfeff;
+      --accent: #22c55e;
+      --dark: #0f172a;
+      --light: #ffffff;
+      --muted: #64748b;
+      --gradient: linear-gradient(135deg, #0f766e, #22c55e, #38bdf8);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Poppins", "Segoe UI", sans-serif;
+      color: var(--dark);
+      background: #f0fdfa;
+      line-height: 1.7;
+    }
+    header {
+      background: var(--gradient);
+      color: #f8fafc;
+      padding: 3.5rem 1.5rem;
+      text-align: center;
+    }
+    header h1 { margin: 0; font-size: 2.6rem; letter-spacing: 0.5px; }
+    header p { max-width: 900px; margin: 1rem auto 0; font-size: 1.05rem; }
+
+    nav {
+      background: var(--light);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 0;
+      padding: 0.6rem;
+      gap: 1.2rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 600;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+    }
+    nav a:hover { background: var(--secondary); }
+
+    section {
+      max-width: 1150px;
+      margin: auto;
+      padding: 3.2rem 1.5rem;
+    }
+    section h2 {
+      color: var(--primary);
+      font-size: 1.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.6rem;
+      margin-top: 1.8rem;
+    }
+    .card {
+      background: var(--light);
+      border-radius: 18px;
+      padding: 1.7rem;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+    }
+    .card:hover { transform: translateY(-6px); }
+    .card h3 { margin-top: 0; color: var(--primary); }
+
+    .diagram {
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 2.2rem;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    footer {
+      background: #020617;
+      color: #ccfbf1;
+      text-align: center;
+      padding: 2.2rem 1rem;
+    }
+    footer p { margin: 0.35rem 0; }
+
+    @media (max-width: 700px) {
+      header h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Smart Agriculture & Safety System Using ESP32</h1>
+  <p>
+    An IoT-based automation system for smart irrigation, environmental monitoring, and field security using ESP32.
+  </p>
+  <p style="margin-top:1.2rem;font-size:1.05rem;opacity:0.97;">
+    <strong>Project By:</strong> Karri China Venkata Surya Chandra Sekhar<br />
+    <strong>Branch:</strong> Electronics and Communication Engineering (ECE)<br />
+    <strong>Academic:</strong> B.Tech 3-2 Project<br />
+    <strong>Organization:</strong> SpyPro Security Solutions Pvt. Ltd., Vijayawada<br />
+    <strong>Project ID:</strong> SPYPRO/ECE/SA-ESP32/2025
+  </p>
+
+  <div style="margin-top:1.6rem;">
+    <a href="https://github.com/your-username/Smart-Agriculture-ESP32"
+       target="_blank"
+       style="display:inline-block;padding:12px 28px;background:#020617;color:#ffffff;border-radius:999px;text-decoration:none;font-weight:600;box-shadow:0 12px 28px rgba(0,0,0,0.3);">
+      🔗 View Project on GitHub
+    </a>
+  </div>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#objectives">Objectives</a></li>
+    <li><a href="#components">Components</a></li>
+    <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#working">Working</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+
+<section id="about">
+  <h2>Project Overview</h2>
+  <p>
+    This project presents a Smart Agriculture and Safety System developed using the ESP32 microcontroller. It automates irrigation based on soil moisture, monitors environmental conditions such as temperature and humidity, tracks water tank levels, and enhances field security through motion detection.
+  </p>
+</section>
+
+<section id="objectives">
+  <h2>Objectives</h2>
+  <div class="grid">
+    <div class="card">Monitor soil moisture, temperature, humidity, and water level in real time.</div>
+    <div class="card">Automate irrigation to reduce water wastage.</div>
+    <div class="card">Detect human or animal intrusion for field safety.</div>
+    <div class="card">Display live sensor data for easy monitoring.</div>
+  </div>
+</section>
+
+<section id="components">
+  <h2>System Components</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Hardware</h3>
+      <ul>
+        <li>ESP32 Development Board</li>
+        <li>Soil Moisture Sensor</li>
+        <li>DHT11 Temperature & Humidity Sensor</li>
+        <li>Ultrasonic Water Level Sensor</li>
+        <li>Relay Module & Irrigation Motor</li>
+        <li>PIR Sensor, Buzzer, LEDs</li>
+        <li>I2C LCD Display</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Software</h3>
+      <ul>
+        <li>Arduino IDE</li>
+        <li>ESP32 Board Package</li>
+        <li>DHT & LiquidCrystal_I2C Libraries</li>
+        <li>Embedded C / C++</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <h2>Real-Time Implementation</h2>
+  <div class="grid">
+    <div class="card"><img src="C:\Users\chand\OneDrive\Pictures\Picture1.png" alt="LCD Display Output" style="width:100%;border-radius:12px;"><p>LCD displaying system title and live status.</p></div>
+    <div class="card"><img src="C:\Users\chand\OneDrive\Pictures\Picture2.png" alt="Complete Hardware Setup" style="width:100%;border-radius:12px;"><p>Complete ESP32-based smart agriculture hardware setup.</p></div>
+  </div>
+</section>
+
+<section id="block-diagram">
+  <h2>Block Diagram</h2>
+  <div class="diagram">
+    <svg width="100%" height="420" viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrow2" markerWidth="10" markerHeight="10" refX="10" refY="3" orient="auto">
+          <path d="M0,0 L10,3 L0,6 Z" fill="#1f7a4d" />
+        </marker>
+      </defs>
+      <!-- Inputs -->
+      <rect x="40" y="40" width="220" height="50" rx="10" fill="#e8f5ee" stroke="#1f7a4d" />
+      <text x="150" y="70" text-anchor="middle" font-size="14">Soil Moisture Sensor</text>
+      <rect x="40" y="110" width="220" height="50" rx="10" fill="#e8f5ee" stroke="#1f7a4d" />
+      <text x="150" y="140" text-anchor="middle" font-size="14">DHT11 Sensor</text>
+      <rect x="40" y="180" width="220" height="50" rx="10" fill="#e8f5ee" stroke="#1f7a4d" />
+      <text x="150" y="210" text-anchor="middle" font-size="14">Ultrasonic Sensor</text>
+      <rect x="40" y="250" width="220" height="50" rx="10" fill="#e8f5ee" stroke="#1f7a4d" />
+      <text x="150" y="280" text-anchor="middle" font-size="14">PIR Sensor</text>
+      <!-- ESP32 -->
+      <rect x="350" y="150" width="200" height="100" rx="15" fill="#1f7a4d" />
+      <text x="450" y="205" text-anchor="middle" font-size="18" fill="#ffffff" font-weight="bold">ESP32</text>
+      <!-- Outputs -->
+      <rect x="640" y="60" width="220" height="50" rx="10" fill="#ffffff" stroke="#1f7a4d" />
+      <text x="750" y="90" text-anchor="middle" font-size="14">Relay & Irrigation Motor</text>
+      <rect x="640" y="130" width="220" height="50" rx="10" fill="#ffffff" stroke="#1f7a4d" />
+      <text x="750" y="160" text-anchor="middle" font-size="14">LCD Display</text>
+      <rect x="640" y="200" width="220" height="50" rx="10" fill="#ffffff" stroke="#1f7a4d" />
+      <text x="750" y="230" text-anchor="middle" font-size="14">LED Indicators</text>
+      <rect x="640" y="270" width="220" height="50" rx="10" fill="#ffffff" stroke="#1f7a4d" />
+      <text x="750" y="300" text-anchor="middle" font-size="14">Buzzer Alarm</text>
+      <!-- Arrows -->
+      <line x1="260" y1="65" x2="350" y2="180" stroke="#1f7a4d" stroke-width="2" marker-end="url(#arrow2)" />
+      <line x1="260" y1="135" x2="350" y2="185" stroke="#1f7a4d" stroke-width="2" marker-end="url(#arrow2)" />
+      <line x1="260" y1="205" x2="350" y2="195" stroke="#1f7a4d" stroke-width="2" marker-end="url(#arrow2)" />
+      <line x1="260" y1="275" x2="350" y2="210" stroke="#1f7a4d" stroke-width="2" marker-end="url(#arrow2)" />
+      <line x1="550" y1="175" x2="640" y2="85" stroke="#1f7a4d" stroke-width="2" marker-end="url(#arrow2)" />
+      <line x1="550" y1="190" x2="640" y2="155" stroke="#1f7a4d" stroke-width="2" marker-end="url(#arrow2)" />
+      <line x1="550" y1="205" x2="640" y2="225" stroke="#1f7a4d" stroke-width="2" marker-end="url(#arrow2)" />
+      <line x1="550" y1="220" x2="640" y2="295" stroke="#1f7a4d" stroke-width="2" marker-end="url(#arrow2)" />
+    </svg>
+    <p style="margin-top:1rem;color:#6b7280;">Left: Inputs | Center: ESP32 | Right: Outputs</p>
+  </div>
+</section>
+
+<section id="architecture">
+  <h2>System Architecture</h2>
+  <p>
+    The system architecture follows a clear <strong>Input – Process – Output</strong> model. All sensors act as inputs to the ESP32 microcontroller, which processes the data and controls the output devices such as the irrigation motor, LCD, LEDs, and buzzer. The detailed block representation is shown in the Block Diagram section above.
+  </p>
+</section>
+
+<section id="functional">
+  <h2>Functional Description</h2>
+
+  <h3>1. Soil Moisture Monitoring and Irrigation Automation</h3>
+  <ul>
+    <li>The soil moisture sensor continuously measures soil dryness.</li>
+    <li>If the moisture level drops below a predefined threshold, the ESP32 activates the relay.</li>
+    <li>The relay switches ON the water pump, automatically irrigating the crops.</li>
+    <li>Once sufficient moisture is detected, the pump turns OFF to prevent water wastage.</li>
+    <li>Soil moisture values and pump status are displayed on the LCD.</li>
+  </ul>
+
+  <h3>2. Environmental Monitoring</h3>
+  <ul>
+    <li>The DHT11 sensor measures temperature and humidity at regular intervals.</li>
+    <li>The ESP32 processes these values and displays them on the LCD.</li>
+    <li>This data helps farmers understand field conditions and crop health.</li>
+  </ul>
+
+  <h3>3. Water Level Monitoring</h3>
+  <ul>
+    <li>The ultrasonic sensor measures the distance between the tank top and the water surface.</li>
+    <li>Green LED glows when the water level is sufficient.</li>
+    <li>Red LED glows when the water level is low.</li>
+    <li>This provides instant visual feedback for timely water refilling.</li>
+  </ul>
+
+  <h3>4. Security and Intrusion Detection</h3>
+  <ul>
+    <li>The PIR sensor continuously monitors movement in the field.</li>
+    <li>When motion is detected, the ESP32 activates the buzzer.</li>
+    <li>The audible alert warns against animal or human intrusion.</li>
+    <li>This improves crop safety and reduces potential damage.</li>
+  </ul>
+</section>
+
+<section id="working">
+  <h2>Working Flow</h2>
+  <ul>
+    <li>ESP32 initializes all sensors, LCD, and output devices on power-up.</li>
+    <li>Soil moisture is read and evaluated.</li>
+    <li>Water pump is automatically turned ON or OFF based on moisture threshold.</li>
+    <li>Temperature and humidity data are collected using the DHT11 sensor.</li>
+    <li>Water tank level is measured using the ultrasonic sensor.</li>
+    <li>LEDs indicate water availability status.</li>
+    <li>PIR sensor detects motion and triggers the buzzer if intrusion occurs.</li>
+    <li>All sensor readings and system states are displayed on the LCD.</li>
+    <li>The entire process repeats continuously in a timed loop for real-time monitoring.</li>
+  </ul>
+</section>
+
+<section id="conclusion">
+  <h2>Conclusion</h2>
+  <p>
+    The Smart Agriculture and Safety System using ESP32 demonstrates how IoT can improve farming efficiency, conserve water resources, and enhance field security. The system is cost‑effective, scalable, and suitable for real‑world agricultural applications, making it a strong foundation for future smart farming solutions.
+  </p>
+</section>
+
+<footer>
+  <p>© 2025 Smart Agriculture & Safety System | ESP32</p>
+  <p>Designed & Developed by Karri China Venkata Surya Chandra Sekhar (ECE)</p>
+  <p>
+    GitHub Repository:
+    <a href="https://github.com/chandukarr/Smart-Agriculture-ESP32"
+       target="_blank"
+       style="color:#5eead4;text-decoration:none;font-weight:600;">
+       Smart Agriculture ESP32 Project
+    </a>
+  </p>
+</footer>
+
+</body>
+</html>
